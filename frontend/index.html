@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaviDocs</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <style>
+    .button {
+      min-width: 17rem;
+    }
+  </style>
+  <body class="flex items-stretch px-5">
+    <section class="w-full mx-auto py-16">
+      <div class="max-w-full rounded overflow-hidden shadow-lg p-8">
+        <h1 class="font-bold text-xl text-gray-600 my-3">DaviDocs</h1>
+        <button id="picker-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+          <div class="flex-shrink-0">
+            <img class="h-12 w-12" src="./img/google-drive-logo.svg" alt="google drive image">
+          </div>
+          <div class="ml-6 pt-1">
+            <h4 class="text-xl text-gray-900 leading-tight">Google Drive</h4>
+            <p class="text-base text-gray-600 leading-normal">Seleccionar archivo</p>
+          </div>
+        </button>
+      </div>
+      <div class="max-w-full rounded overflow-hidden shadow-lg p-8">
+        <h1 class="font-bold text-xl text-gray-600 my-3">DaviDocs</h1>
+        <button  id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+          <div class="flex-shrink-0">
+            <img class="h-12 w-12" src="./img/upload.svg" alt="upload image">
+          </div>
+          <div class="ml-6 pt-1">
+            <h4 class="text-xl text-gray-900 leading-tight">Google Drive</h4>
+            <p class="text-base text-gray-600 leading-normal">Subir archivo</p>
+          </div>
+        </button>
+      </div>
+      <!-- Send to the server -->
+      <form action="http://localhost:8000/files" method="post" enctype="multipart/form-data" id="form" class="max-w-full rounded overflow-hidden shadow-lg p-8">
+        <h1 class="font-bold text-xl text-gray-600 my-3">Servidor de Prueba</h1>
+        <button type="submit" id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+          <div class="flex-shrink-0">
+            <img class="h-12 w-12" src="./img/send.svg" alt="send image">
+          </div>
+          <div class="ml-6 pt-1">
+            <h4 class="text-xl text-gray-900 leading-tight">Servidor</h4>
+            <p class="text-base text-gray-600 leading-normal">Enviar archivo</p>
+          </div>
+        </button>
+      </form>
+    </section>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
