@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/google-drive-logo.svg" type="image/x-icon">
     <title>DaviDocs</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   </head>
@@ -27,7 +28,17 @@
       </div>
       <div class="max-w-full rounded overflow-hidden shadow-lg p-8">
         <h1 class="font-bold text-xl text-gray-600 my-3">DaviDocs</h1>
-        <button  id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+        <button id="select-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+          <div class="flex-shrink-0">
+            <img class="h-12 w-12" src="./img/file.svg" alt="select image">
+          </div>
+          <div class="ml-6 pt-1">
+            <h4 class="text-xl text-gray-900 leading-tight">Local</h4>
+            <p class="text-base text-gray-600 leading-normal">Seleccionar archivo</p>
+          </div>
+        </button>
+        <input type="file" class="hidden" id="get-file" name='file'>
+        <button  id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500 mt-4">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="./img/upload.svg" alt="upload image">
           </div>
@@ -40,7 +51,7 @@
       <!-- Send to the server -->
       <form action="http://localhost:8000/files" method="post" enctype="multipart/form-data" id="form" class="max-w-full rounded overflow-hidden shadow-lg p-8">
         <h1 class="font-bold text-xl text-gray-600 my-3">Servidor de Prueba</h1>
-        <button type="submit" id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+        <button type="submit" id="send-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="./img/send.svg" alt="send image">
           </div>

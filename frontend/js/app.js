@@ -8,29 +8,62 @@ const APP_ID = "637820051392"
 
 // DOM Elements
 const $btnPicker = document.querySelector('#picker-button')
+const $btnSelect = document.querySelector('#select-button')
+const $inputFile = document.querySelector('#get-file')
+const $btnUpload = document.querySelector('#upload-button')
+const $btnSend = document.querySelector('#send-button')
 const $form = document.querySelector('#form')
 
 // Global Variables
 let pickerApiLoaded = false
 let oauthToken
 let GoogleAuth
-
-// File
-let fileDrive
+let driveFile
+let localFile
 
 // Events
 $btnPicker.addEventListener('click', () => {
+  $btnSend.classList.add('opacity-50', 'cursor-not-allowed')
+  $btnSend.setAttribute('disabled', '')
   handleClientLoad()
 })
 $form.addEventListener('submit', async (ev) => {
   ev.preventDefault()
-
-  const response = await fetch('http://localhost:8000/files', {
-    method: 'POST',
-    body: fileDrive
-  })
-  const data = await response.text()
-  alert(data)
+  try {
+    const response = await fetch('http://localhost:8000/files', {
+      method: 'POST',
+      body: driveFile
+    })
+    const data = await response.text()
+    alert(data)
+  } catch(error) {
+    alert(`Error: ${error.message}`)
+  }
+})
+$btnSelect.addEventListener('click', () => {
+  $inputFile.click()
+  $btnUpload.classList.add('opacity-50', 'cursor-not-allowed')
+  $btnUpload.setAttribute('disabled', '')
+})
+$inputFile.addEventListener('change', (ev) => {
+  const $parentElement = ev.target.parentNode
+  const formData = new FormData()
+  formData.append('file', $inputFile.files.item(0), $inputFile.files.item(0).name)
+  localFile = formData
+  const $infoElement = document.createElement('p')
+  $infoElement.innerText = $inputFile.files.item(0).name
+  $infoElement.classList.add('text-gray-600', 'mt-2', 'mb-4', 'file-name')
+  $parentElement.insertBefore($infoElement, $inputFile)
+  $btnUpload.classList.remove('opacity-50', 'cursor-not-allowed')
+  $btnUpload.removeAttribute('disabled')
+})
+$btnUpload.addEventListener('click', () => {
+  if(localFile) {
+    // Enviar a google drive
+    document.querySelector('.file-name').remove()
+  } else {
+    alert('Primero Seleccione un archivo')
+  }
 })
 
 function handleClientLoad() {
@@ -123,6 +156,7 @@ async function getFile(id, name) {
 
   const formData = new FormData()
   formData.append('file', file, name)
-  console.log(formData.get('file'))
-  fileDrive = formData
+  driveFile = formData
+  $btnSend.removeAttribute('disabled')
+  $btnSend.classList.remove('opacity-50', 'cursor-not-allowed')
 }
