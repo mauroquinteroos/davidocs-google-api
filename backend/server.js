@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 })
 app.post('/files', upload.single('file'), (req, res) => {
-  res.send('Everything ok!')
+  res.send('Archivo recibido')
 })
 
 const port = 8000

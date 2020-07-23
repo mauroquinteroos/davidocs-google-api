@@ -12,10 +12,11 @@
     }
   </style>
   <body class="flex items-stretch px-5">
-    <section class="w-full mx-auto py-16">
+    <section class="w-full mx-auto py-5">
       <div class="max-w-full rounded overflow-hidden shadow-lg p-8">
         <h1 class="font-bold text-xl text-gray-600 my-3">DaviDocs</h1>
-        <button id="picker-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+        <!-- ----- Get file from google drive ----- -->
+        <button class="button flex p-6 bg-transparent rounded-lg border border-blue-500" id="picker-button">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="./img/google-drive-logo.svg" alt="google drive image">
           </div>
@@ -27,7 +28,19 @@
       </div>
       <div class="max-w-full rounded overflow-hidden shadow-lg p-8">
         <h1 class="font-bold text-xl text-gray-600 my-3">DaviDocs</h1>
-        <button  id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+        <!-- ----- Get file from your computer ----- -->
+        <button class="button flex p-6 bg-transparent rounded-lg border border-blue-500" id="select-button">
+          <div class="flex-shrink-0">
+            <img class="h-12 w-12" src="./img/file.svg" alt="select image">
+          </div>
+          <div class="ml-6 pt-1">
+            <h4 class="text-xl text-gray-900 leading-tight">Local</h4>
+            <p class="text-base text-gray-600 leading-normal">Seleccionar archivo</p>
+          </div>
+        </button>
+        <input class="hidden" id="select-input" type="file" name="file">
+        <!-- ----- Upload file to google drive ----- -->
+        <button class="button flex p-6 bg-transparent rounded-lg border border-blue-500 mt-4"  id="upload-button">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="./img/upload.svg" alt="upload image">
           </div>
@@ -37,10 +50,10 @@
           </div>
         </button>
       </div>
-      <!-- Send to the server -->
-      <form action="http://localhost:8000/files" method="post" enctype="multipart/form-data" id="form" class="max-w-full rounded overflow-hidden shadow-lg p-8">
+      <!-- Send to the local server -->
+      <form class="max-w-full rounded overflow-hidden shadow-lg p-8" id="form" action="http://localhost:8000/files" method="post" enctype="multipart/form-data">
         <h1 class="font-bold text-xl text-gray-600 my-3">Servidor de Prueba</h1>
-        <button type="submit" id="upload-button" class="button flex p-6 bg-transparent rounded-lg border border-blue-500">
+        <button class="button flex p-6 bg-transparent rounded-lg border border-blue-500" id="send-button" type="submit">
           <div class="flex-shrink-0">
             <img class="h-12 w-12" src="./img/send.svg" alt="send image">
           </div>
